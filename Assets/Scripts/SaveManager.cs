@@ -51,7 +51,7 @@ public class SaveManager : MonoBehaviour
         }
         catch (NullReferenceException e)
         {
-            Debug.Log("Fuck, " + e.Message);
+            Debug.Log("God dammit, rip my data : " + e.Message);
 
         }
 
