@@ -20,7 +20,7 @@ public class UpgradeManage : MonoBehaviour
     public static float KHperS = 0;
     public static int[] UpgradeCount = { 0, 0, 0 };
 
-    private System.Random random = new System.Random();
+    // private System.Random random = new System.Random();
 
     // Use this for initialization
     void Start()
