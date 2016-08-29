@@ -1,5 +1,7 @@
 # IdleDogecoinMiner
 
+![Imgur](http://i.imgur.com/X0lGlJE.png)
+
 An idle game...
 
 Much welcome little shibe, wanna such see my game,wow...
