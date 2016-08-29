@@ -21,9 +21,9 @@ public class Test : MonoBehaviour
     {
         while (true)
         {
-            if (rand.Next(0,100) <= 1)
+            if (rand.Next(0,100) <= 10)
                 L.Add((GameObject)Instantiate(Resources.Load("BaseDoge"), new Vector3(-250, 233, 0), new Quaternion(0, 0, 0, 0)));
-            yield return new WaitForSeconds(0.50f);   
+            yield return new WaitForSeconds(0.25f);   
         }
     }
     
