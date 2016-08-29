@@ -46,7 +46,7 @@ public class UpgradeManage : MonoBehaviour
         textDoge.text = Math.Round(doges, 2).ToString();
         KHperSText.text = KHperS + " KH/S";
 
-        textButton.text = "An DogeCoin Miner"
+        textButton.text = "DogeCoin Miner"
                               + Environment.NewLine
                               + "+10 KH/S"
                               + Environment.NewLine
