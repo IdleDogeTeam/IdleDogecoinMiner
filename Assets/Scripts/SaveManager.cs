@@ -17,11 +17,12 @@ public class SaveManager : MonoBehaviour
         public short version = 1;
         public float KHperS = 0;
         public int[] UpgradeCount = { 0, 0, 0 };
+        
 
         //[OnDeserializing]
         //internal void OnDeserializingMethod(StreamingContext context)
         //{
-            
+
         //    GameSave temp;
         //    temp = (GameSave)context.Context;
         //    temp.doges = doges;
@@ -54,24 +55,32 @@ public class SaveManager : MonoBehaviour
             Debug.Log("God dammit, rip my data : " + e.Message);
 
         }
-
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/save_game.dat");
-        bf.Serialize(file, gameSave);
+        // BinaryFormatter bf = new BinaryFormatter();
+        // FileStream file = File.Create(Application.persistentDataPath + "/save_game.dat");
+        // bf.Serialize(file, gameSave);
+        using (StreamWriter output = new StreamWriter(Application.persistentDataPath + "/save_game.json", false))
+        {
+            output.WriteLine(JsonUtility.ToJson(gameSave));
+        }
         Debug.Log("Game Saved at : " + Application.persistentDataPath);
-        file.Close();
     }
     public GameSave LoadGame()
     {
         if (File.Exists(Application.persistentDataPath + "/save_game.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/save_game.dat", FileMode.Open);
-            GameSave gameSave = (GameSave)bf.Deserialize(file);
-            file.Close();
+            // BinaryFormatter bf = new BinaryFormatter();
+            // FileStream file = File.Open(Application.persistentDataPath + "/save_game.json", FileMode.Open);
+            GameSave gameSave;
+            using (StreamReader input = new StreamReader(Application.persistentDataPath + "/save_game.json"))
+            {
+                gameSave = JsonUtility.FromJson<GameSave>(input.ReadToEnd());
+            }
+
+
             return gameSave;
         }
-        else {
+        else
+        {
             Debug.Log(string.Format("File doesn't exist at path: {0}{1}, Loading defaults.", Application.persistentDataPath, "/save_game.dat"));
             return new GameSave();
         }
