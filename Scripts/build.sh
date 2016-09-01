@@ -14,7 +14,6 @@ echo "Attempting to build $project for Windows"
 
   -silent-crashes \
 
-  -logFile $(pwd)/unity.log \
 
   -projectPath $(pwd) \
 
@@ -23,6 +22,4 @@ echo "Attempting to build $project for Windows"
   -quit
 
 
-echo 'Logs from build'
-
-cat $(pwd)/unity.log
+echo 'done'
