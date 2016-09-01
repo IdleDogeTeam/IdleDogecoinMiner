@@ -21,7 +21,7 @@ public class UpdateDownloader : MonoBehaviour
     {
         try
         {
-            if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
                 return "http://10doge.ga/latest/windows/v.txt";
             else
             {
