@@ -5,7 +5,7 @@ using System;
 
 public class UpdateDownloader : MonoBehaviour
 {
-    public static readonly int versionNumber = 1;
+    public static readonly int versionNumber = 2;
     // Use this for initialization
     void Start()
     {
