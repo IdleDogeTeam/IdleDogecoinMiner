@@ -23,7 +23,7 @@ public class Test : MonoBehaviour
     {
         while (true)
         {
-            if (rand.Next(0,100) <= (5 / (Coins.Count + 1)))
+            if (rand.Next(0,100) <= (3 / (Coins.Count + 1)))
                 L.Add((GameObject)Instantiate(Resources.Load("BaseDoge"), new Vector3(-250, 233, 0), new Quaternion(0, 0, 0, 0)));
             yield return new WaitForSeconds(2f);   
             
