@@ -15,7 +15,7 @@ rvm:
 
 install:
 
-- ./Scripts/install.sh
+-  travis_wait ./Scripts/install.sh
 
 script:
 
