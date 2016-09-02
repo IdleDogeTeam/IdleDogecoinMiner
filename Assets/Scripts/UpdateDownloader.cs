@@ -6,6 +6,8 @@ using System;
 public class UpdateDownloader : MonoBehaviour
 {
     public static readonly int versionNumber = 2;
+    
+    public bool forceUpdateShow = false;
     // Use this for initialization
     void Start()
     {
@@ -17,11 +19,12 @@ public class UpdateDownloader : MonoBehaviour
     {
 
     }
+    
     private static string getVersionURL(RuntimePlatform runtime)
     {
         try
         {
-            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            if (Application.platform == RuntimePlatform.WindowsPlayer || GameObject.Find("Variable Manager").GetComponent<UpdateDownloader>().forceUpdateShow)
                 return "http://10doge.ga/latest/windows/v.txt";
             else
             {
@@ -84,7 +87,7 @@ public class UpdateDownloader : MonoBehaviour
         }
 
         yield return new WaitUntil(() => IsDownloadFinished(temp));
-        if (int.Parse(temp.text) > versionNumber)
+        if (int.Parse(temp.text) > versionNumber || GameObject.Find("Variable Manager").GetComponent<UpdateDownloader>().forceUpdateShow)
         {
             Debug.Log("A new version is available !");
             GameObject UpdateUI = GameObject.FindGameObjectWithTag("Update");
