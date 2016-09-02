@@ -67,6 +67,7 @@ public class UpdateDownloader : MonoBehaviour
         // GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
         Destroy(GameObject.FindGameObjectWithTag("Update"));
         Debug.Log(down.responseHeaders);
+        NotificationAPI.NewNotification("The update has been downloaded.");
         yield break;
     }
     [Serializable]
