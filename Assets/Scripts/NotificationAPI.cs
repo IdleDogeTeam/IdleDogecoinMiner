@@ -33,11 +33,9 @@ public class NotificationAPI : MonoBehaviour {
         static void Init() { NotifEditor window = (NotifEditor)GetWindow(typeof(NotifEditor));}
         public void OnGUI()
         {
-            string hello = "this is a thing";
-            string kek = GUI.TextField(new Rect(0, 50, 120, 15),hello,30);
-            if(GUILayout.Button("Test")) {
+            if(GUILayout.Button("Invoke a test notification")) {
                 
-                NewNotification(kek);
+                NewNotification("This is a test notification, hello there !");
             }
         }
     }
