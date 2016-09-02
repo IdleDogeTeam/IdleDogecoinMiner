@@ -6,7 +6,7 @@ using System;
 public class UpdateDownloader : MonoBehaviour
 {
     public static readonly int versionNumber = 2;
-    
+
     public bool forceUpdateShow = false;
     // Use this for initialization
     void Start()
@@ -19,7 +19,7 @@ public class UpdateDownloader : MonoBehaviour
     {
 
     }
-    
+
     private static string getVersionURL(RuntimePlatform runtime)
     {
         try
@@ -38,8 +38,37 @@ public class UpdateDownloader : MonoBehaviour
 
 
     }
+    public void startIt()
+    {
+        StartCoroutine(DownloadUpdate());
+    }
+    public IEnumerator DownloadUpdate()
+    {
+        WWW down = null;
+        if (Application.platform == RuntimePlatform.WindowsPlayer || forceUpdateShow)
+        {
+            down = new WWW("http://10doge.ga/latest/windows/win.zip");
+        }
+        GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
+        GameObject progress = (GameObject)Instantiate(Resources.Load("Canvas"));
 
 
+        while (!down.isDone)
+        {
+            Debug.Log(down.progress);
+            LoadingBar.currentAmount = (down.progress * 100);
+            yield return down.progress;
+        }
+        string savePath = Application.persistentDataPath + "/Update" + new System.Random().Next(1, 1000) + ".zip";
+        byte[] data = down.bytes;
+        File.WriteAllBytes(savePath, data);
+        Application.OpenURL(savePath);
+        Destroy(progress);
+        GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
+        Debug.Log(down.responseHeaders);
+        yield break;
+    }
+    [Serializable]
     private class RuntimeNotValidException : Exception
     {
         public RuntimeNotValidException(string message = "Your OS can't install updates") : base(message) { }
@@ -75,7 +104,7 @@ public class UpdateDownloader : MonoBehaviour
         WWW temp = null;
         try
         {
-            
+
             temp = new WWW(getVersionURL(Application.platform));
             if (getVersionURL(Application.platform) == null)
                 throw new RuntimeNotValidException();
@@ -92,8 +121,9 @@ public class UpdateDownloader : MonoBehaviour
             Debug.Log("A new version is available !");
             GameObject UpdateUI = GameObject.FindGameObjectWithTag("Update");
             UpdateUI.GetComponent<Canvas>().enabled = true;
-            
+
         }
+        yield break;
     }
-    
+
 }
