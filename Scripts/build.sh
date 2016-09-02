@@ -1,6 +1,6 @@
 #! /bin/sh
 
-project="IdleDogeMiner"
+project="IdleDogecoinMiner"
 
 
 
