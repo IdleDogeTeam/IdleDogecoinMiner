@@ -17,7 +17,7 @@ public class SaveManager : MonoBehaviour
         public short version = 1;
         public float KHperS = 0;
         public int[] UpgradeCount = { 0, 0, 0 };
-        
+        public int a = 1;
 
         //[OnDeserializing]
         //internal void OnDeserializingMethod(StreamingContext context)
