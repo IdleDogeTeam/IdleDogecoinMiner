@@ -64,7 +64,8 @@ public class UpdateDownloader : MonoBehaviour
         File.WriteAllBytes(savePath, data);
         Application.OpenURL(savePath);
         Destroy(progress);
-        GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
+        // GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
+        Destroy(GameObject.FindGameObjectWithTag("Update"));
         Debug.Log(down.responseHeaders);
         yield break;
     }
