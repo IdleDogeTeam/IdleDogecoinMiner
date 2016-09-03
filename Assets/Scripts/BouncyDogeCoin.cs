@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BouncyDogeCoin : MonoBehaviour
@@ -11,7 +12,7 @@ public class BouncyDogeCoin : MonoBehaviour
         transform.SetParent(GameObject.Find("Canvas").transform, false);
         transform.Translate(rand.Next(0, 600), rand.Next(210, 265), 0);
     }
-
+    
     // Update is called once per frame
     void Update()
     {

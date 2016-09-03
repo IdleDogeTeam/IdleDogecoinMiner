@@ -14,18 +14,33 @@ public class NotificationAPI : MonoBehaviour {
     /// </summary>
     /// <param name="text">The text to be displayed.</param>
 	public static void NewNotification(string text) {
-        GameObject notif = GameObject.FindGameObjectWithTag("Notification");
-        notif.GetComponent<Text>().text = text;
-        
-        notif.GetComponent<Animation>().Play("okek");
+        GameObject.FindGameObjectWithTag("Notification").GetComponent<NotificationAPI>().StartCo(text);
     }
-    
+    public void StartCo(string hello)
+    {
+        StartCoroutine(NotificationQueue(hello));
+    }
+    private IEnumerator NotificationQueue(string hoi)
+    {
+        GameObject notif = GameObject.FindGameObjectWithTag("Notification");
+        yield return new WaitUntil(() => Inverse(GameObject.FindGameObjectWithTag("Notification").GetComponent<Animation>().isPlaying));
+        notif.GetComponent<Text>().text = hoi;
+
+        notif.GetComponent<Animation>().Play("okeke");
+    }
+    public static bool Inverse(bool lel)
+    {
+        if (lel)
+            return false;
+        else
+            return true;
+    }
     public static void NewNotification(string text, Color coulour)
     {
         GameObject notif = GameObject.FindGameObjectWithTag("Notification");
         notif.GetComponent<Text>().text = text;
         notif.GetComponent<Text>().color = coulour;
-        notif.GetComponent<Animation>().Play("okek");
+        notif.GetComponent<Animation>().Play("okeke");
     }
 
     public class NotifEditor : EditorWindow {

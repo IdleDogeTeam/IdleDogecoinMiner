@@ -67,7 +67,7 @@ public class UpdateDownloader : MonoBehaviour
         // GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
         Destroy(GameObject.FindGameObjectWithTag("Update"));
         Debug.Log(down.responseHeaders);
-        NotificationAPI.NewNotification("The update has been downloaded.");
+        NotificationAPI.NewNotification("The update has been downloaded at : "+ savePath + ".");
         yield break;
     }
     [Serializable]
@@ -114,6 +114,7 @@ public class UpdateDownloader : MonoBehaviour
         catch (Exception)
         {
             Debug.Log("Updates aren't available for this OS : " + Application.platform.ToString());
+            NotificationAPI.NewNotification("Updates aren't avaible for this OS.");
             StopAllCoroutines();
         }
 
