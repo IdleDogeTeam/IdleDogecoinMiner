@@ -35,22 +35,17 @@ public class NotificationAPI : MonoBehaviour {
         else
             return true;
     }
-    public static void NewNotification(string text, Color coulour)
-    {
-        GameObject notif = GameObject.FindGameObjectWithTag("Notification");
-        notif.GetComponent<Text>().text = text;
-        notif.GetComponent<Text>().color = coulour;
-        notif.GetComponent<Animation>().Play("okeke");
-    }
+    
 
     public class NotifEditor : EditorWindow {
+        private string[] lolStrings = new string[8] { "Hello World !", "Much test,wow", "SO TEST OMG", "I didn't know you liked testing these a lot !", "The wowest test" , "Of course, why not", "You keep testing :o","Ok now get some doge-milk then see u later"};
         [MenuItem("Window/Notification Control")]
         static void Init() { NotifEditor window = (NotifEditor)GetWindow(typeof(NotifEditor));}
         public void OnGUI()
         {
             if(GUILayout.Button("Invoke a test notification")) {
                 
-                NewNotification("This is a test notification, hello there !");
+                NewNotification(lolStrings[new System.Random().Next(0,lolStrings.Length)]);
             }
         }
     }

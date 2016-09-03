@@ -114,7 +114,7 @@ public class UpdateDownloader : MonoBehaviour
         catch (Exception)
         {
             Debug.Log("Updates aren't available for this OS : " + Application.platform.ToString());
-            NotificationAPI.NewNotification("Updates aren't avaible for this OS.");
+            NotificationAPI.NewNotification("Updates aren't available for this OS.");
             StopAllCoroutines();
         }
 
