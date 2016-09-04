@@ -83,7 +83,7 @@ public class UpgradeManage : MonoBehaviour
     {
 
             //I don't speak fluent French, so please fix this if I made a mistake :)
-            mineButton.text = "Voyons certaines mines Dogecoin!";
+            mineButton.text = "Minons quelques dogecoins !";
             textPerSec.text = "Par seconde : " + dogesPerSec;
             textCPC.text = "CPC : " + CPCDisplay;
             textDoge.text = Math.Round(doges, 2).ToString();
@@ -94,19 +94,19 @@ public class UpgradeManage : MonoBehaviour
             dimension.x = 400;
             dimension.y = 75;
             t.sizeDelta = dimension;
-            textButton.text = "DogeCoin Mineur"
+            textButton.text = "Mineur de dogecoin"
                       + Environment.NewLine
                       + "+10 KH/S"
                       + Environment.NewLine
                       + "+0.2 Dogecoins/s"
                       + Environment.NewLine
                       + "Coût : " + UpgradeLvlCost[0] + " DogeCoins";
-            textButton2.text = "1CliquezMien v" + version + ".0"
+            textButton2.text = "1-clic-mine v" + version + ".0"
                                   + Environment.NewLine
                                   + "+0.2 CPC"
                                   + Environment.NewLine
                                   + "Coût : " + UpgradeLvlCost[1] + " DogeCoins";
-            textButton3.text = "ASIC Mineur"
+            textButton3.text = "Mineur ASIC"
                                   + Environment.NewLine
                                   + "+0.4 CPC"
                                   + Environment.NewLine
@@ -182,8 +182,7 @@ public class UpgradeManage : MonoBehaviour
         if (UpgradeLvlCost[2] <= doges)
         {
             doges -= UpgradeLvlCost[2];
-            dogesPerSec += 0.20f;
-            dogesPerSec += 0.20f;
+            dogesPerSec += 0.40f;
             UpgradeCount[2] += 2;
             dogesPerClick += 0.40f;
             UpgradeLvlCost[2] += (float)Math.Round(UpgradeLvlCost[2] / 10, 2);
