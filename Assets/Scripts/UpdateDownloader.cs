@@ -47,7 +47,7 @@ public class UpdateDownloader : MonoBehaviour
         WWW down = null;
         if (Application.platform == RuntimePlatform.WindowsPlayer || forceUpdateShow)
         {
-            down = new WWW("http://10doge.ga/latest/windows/win.zip");
+            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Win64.zip");
         }
         GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
         GameObject progress = (GameObject)Instantiate(Resources.Load("Canvas"));
