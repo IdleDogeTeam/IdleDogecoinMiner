@@ -6,7 +6,7 @@ using System;
 public class UpdateDownloader : MonoBehaviour
 {
     public static readonly int versionNumber = 2;
-
+    public static readonly string SysInf = SystemInfo.operatingSystem;
     public bool forceUpdateShow = false;
     // Use this for initialization
     void Start()
@@ -45,6 +45,10 @@ public class UpdateDownloader : MonoBehaviour
     public IEnumerator DownloadUpdate()
     {
         WWW down = null;
+        Debug.Log(SysInf);
+        if (SysInf.Contains("Windows")&& SysInf.Contains("64bit") )
+        { Debug.Log("Windows 64"); }
+
         if (Application.platform == RuntimePlatform.WindowsPlayer || forceUpdateShow)
         {
             down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Win64.zip");
