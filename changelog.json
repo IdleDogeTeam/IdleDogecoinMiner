@@ -1,5 +1,5 @@
 {
-  "Latest": "0.4",
+  "Latest": "0.5",
   "ChangeLogID": 0,
   "Entries": {
     "Version 0.4": {
@@ -8,6 +8,15 @@
         "Such New Save System",
         "Very Fix Grammar",
         "Much Clean Up Code"
+      ]
+    }
+    "Version 0.5": {
+      "Date": "10/09/16",
+      "Changes": [
+        "Much update AUTO-downloader",
+        "So Notification API",
+        "Much code cleaning",
+        "Very lag fixes"
       ]
     }
   }
