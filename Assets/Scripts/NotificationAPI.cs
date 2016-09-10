@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEditor;
+// using UnityEditor;
 
 public class NotificationAPI : MonoBehaviour {
     
@@ -37,7 +37,7 @@ public class NotificationAPI : MonoBehaviour {
     }
     
 
-    public class NotifEditor : EditorWindow {
+   /*  public class NotifEditor : EditorWindow {
         private string[] lolStrings = new string[8] { "Hello World !", "Much test,wow", "SO TEST OMG", "I didn't know you liked testing these a lot !", "The wowest test" , "Of course, why not", "You keep testing :o","Ok now get some doge-milk then see u later"};
         [MenuItem("Window/Notification Control")]
         static void Init() { NotifEditor window = (NotifEditor)GetWindow(typeof(NotifEditor));}
@@ -48,7 +48,7 @@ public class NotificationAPI : MonoBehaviour {
                 NewNotification(lolStrings[new System.Random().Next(0,lolStrings.Length)]);
             }
         }
-    }
+    } */
     // Update is called once per frame
     void Update () {
 	
