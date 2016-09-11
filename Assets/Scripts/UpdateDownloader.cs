@@ -5,7 +5,7 @@ using System;
 
 public class UpdateDownloader : MonoBehaviour
 {
-    public static readonly int versionNumber = 2;
+    public static readonly int versionNumber = 3;
     public static readonly string SysInf = SystemInfo.operatingSystem;
     public bool forceUpdateShow = false;
     // Use this for initialization
@@ -19,16 +19,23 @@ public class UpdateDownloader : MonoBehaviour
     {
 
     }
-
+    private static RuntimePlatform[] compatibleVersions = { RuntimePlatform.OSXPlayer, RuntimePlatform.WindowsPlayer, RuntimePlatform.LinuxPlayer };
     private static string getVersionURL(RuntimePlatform runtime)
     {
         try
         {
-            if (Application.platform == RuntimePlatform.WindowsPlayer || GameObject.Find("Variable Manager").GetComponent<UpdateDownloader>().forceUpdateShow)
-                return "http://10doge.ga/latest/windows/v.txt";
+            bool isCompatible = false;
+            foreach (var item in compatibleVersions)
+            {
+                if (item == Application.platform)
+                    isCompatible = true;
+            }
+            if (isCompatible || GameObject.Find("Variable Manager").GetComponent<UpdateDownloader>().forceUpdateShow)
+                return "https://github.com/IdleDogeTeam/IdleDogecoinMiner/raw/gh-pages/latest/v.txt";
             else
             {
                 throw new RuntimeNotValidException("Your actual build isn't able to install updates.");
+
             }
         }
         catch (Exception)
@@ -46,13 +53,32 @@ public class UpdateDownloader : MonoBehaviour
     {
         WWW down = null;
         Debug.Log(SysInf);
-        if (SysInf.Contains("Windows")&& SysInf.Contains("64bit") )
-        { Debug.Log("Windows 64"); }
-
-        if (Application.platform == RuntimePlatform.WindowsPlayer || forceUpdateShow)
+        bool[] Win64 = new bool[2] { false, false }; // bool[0] = windows or not, bool[1] = 32bit (false) 64 bit (true)
+        if (SysInf.Contains("Windows") && SysInf.Contains("64bit"))
         {
-            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Win64.zip");
+            Debug.Log("Windows 64");
+            Win64[0] = true;
+            Win64[1] = true;
         }
+        else if (SysInf.Contains("Windows"))
+        {
+            Win64[0] = true;
+            Win64[1] = false;
+        }
+
+
+        if ((Application.platform == RuntimePlatform.WindowsPlayer && Win64[0] && Win64[1]) || forceUpdateShow)
+        {
+            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Win64.zip?raw=true");
+        }
+        else if ((Application.platform == RuntimePlatform.WindowsPlayer && Win64[0] && !Win64[1]))
+            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Win32.zip?raw=true");
+        else if (Application.platform == RuntimePlatform.LinuxPlayer)
+            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Linux.zip?raw=true");
+        else if (Application.platform == RuntimePlatform.OSXPlayer)
+            down = new WWW("https://idledogeteam.github.io/IdleDogecoinMiner/latest/IdleDogecoinMiner-Mac.zip?raw=true");
+        else
+            yield break;
         GameObject.FindGameObjectWithTag("Update").GetComponent<Canvas>().enabled = false;
         GameObject progress = (GameObject)Instantiate(Resources.Load("Canvas"));
 
