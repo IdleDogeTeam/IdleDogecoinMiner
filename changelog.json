@@ -1,7 +1,8 @@
 {
   "Latest": "0.5",
-  "ChangeLogID": 0,
+  "ChangeLogID": 1,
   "Entries": {
+    
     "Version 0.4": {
       "Date": "01/09/16",
       "Changes": [
@@ -10,6 +11,7 @@
         "Much Clean Up Code"
       ]
     }
+    ,
     "Version 0.5": {
       "Date": "10/09/16",
       "Changes": [
