@@ -66,7 +66,7 @@ public class SaveManager : MonoBehaviour
     }
     public GameSave LoadGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/save_game.dat"))
+        if (File.Exists(Application.persistentDataPath + "/save_game.json"))
         {
             // BinaryFormatter bf = new BinaryFormatter();
             // FileStream file = File.Open(Application.persistentDataPath + "/save_game.json", FileMode.Open);
