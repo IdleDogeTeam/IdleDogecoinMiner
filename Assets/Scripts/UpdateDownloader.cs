@@ -5,12 +5,13 @@ using System;
 
 public class UpdateDownloader : MonoBehaviour
 {
-    public static readonly int versionNumber = 3;
-    public static readonly string SysInf = SystemInfo.operatingSystem;
+    public static readonly int versionNumber = 4;
+    public static string SysInf {get; private set;}
     public bool forceUpdateShow = false;
     // Use this for initialization
     void Start()
-    {
+    {SysInf = SystemInfo.operatingSystem
+
         StartCoroutine(VersionCheck());
     }
 
