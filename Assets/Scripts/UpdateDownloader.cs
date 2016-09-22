@@ -10,7 +10,8 @@ public class UpdateDownloader : MonoBehaviour
     public bool forceUpdateShow = false;
     // Use this for initialization
     void Start()
-    {SysInf = SystemInfo.operatingSystem
+    {
+        SysInf = SystemInfo.operatingSystem;
 
         StartCoroutine(VersionCheck());
     }
